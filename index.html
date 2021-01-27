@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>After School Club</title>
+    <script src="https://unpkg.com/vue"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <!--font awesome library-->
+    <link rel="stylesheet" type="text/css" href="stylesheet.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="lessons.js"></script>
+    <!-- bootstrap 4 librabry-->
+
+    <!-- bootstrap 3 librabry-->
+</head>
+
+<body>
+
+
+
+    <!-- Displaying information on the page -->
+    <div id="app" style="background-color:ghostwhite;">
+
+
+        <div class="container1">
+            <!-- -->
+
+
+            <div class="col-12 ">
+                </br>
+                <!--title of the page-->
+                <h1 class="text-center"> {{title}} </h1>
+
+                <!--displaying the checkout button-->
+                <button class="float-right btn btn-dark" style="width: 130px;" @click="showCheckout"
+                    v-if="cartItemCount > 0">
+                    {{ cartItemCount }} <span class="fas fa-cart-arrow-down"> </span> Checkout </button>
+                <!--The checkout button which contains an if statement-->
+
+                <button disabled class="float-right btn btn-dark" style="width: 130px;" v-else>
+                    {{ cartItemCount }} <span class="fas fa-cart-arrow-down"> </span> Checkout </button>
+                <!-- This is the checkout button which is disabled if there are no lessons in the cart-->
+
+                <!--THIS IS THE BUTTON THAT IS DISPLAED ON THE CHECKOUT PAGE WHICH ALLOWS YOU TO GO BACK TO THE LESSONS PAGE-->
+                <button class="float-left btn btn-dark" style="width: 130px;" @click="goBack" v-if="!showProduct">
+                    <span class="fas fa-arrow-alt-circle-left"> </span> GoBack </button>
+                </br>
+                </br>
+                </br>
+
+            </div>
+
+            <div id="firstObject" class="row1 product center" v-if="showProduct">
+                <div class="col-md-4 text-center" style="margin: 5px;" v-for="lesson in lessons">
+
+                    <!--the div displaying the first object-->
+                    <div class="col1">
+                        <!--the image of the lesson-->
+                        <img v-bind:src="lesson.image">
+                    </div>
+                    <div class="col-expand">
+                        <!-- the information of the lesson -->
+
+                        <h2><b> {{lesson.subject}} </b></b></h2>
+                        <p><b> {{lesson.location}} </b></b></p>
+                        <p><b> {{lesson.price}} </b></b></p>
+                        <p> <b> Number of Spaces {{lesson.spacesLeft}} </b> </p>
+                        <!--add to cart button-->
+                        <button id="addButton" class="btn btn-dark" v-on:click="addToCart(lesson)"
+                            v-if="canAddToCart(lesson)">Add to
+                            Cart</button>
+                        <button id="addButton" disabled class="btn btn-dark" v-else>Add to Cart</button>
+                        <!--THIS IS THE CODE FOR THE ALERTS THAT YOU WILL GET NEXT TO THE ADD TO CART BUTTON -->
+                        <span class="alert alert-light" v-if="lesson.spacesLeft > 4">
+                            Buy Now!
+                        </span>
+
+                        <span class="alert alert-light" v-else-if="lesson.spacesLeft > 0">
+                            Only {{lesson.spacesLeft}} left!
+                        </span>
+
+                        <span class="alert alert-light" v-else="lesson.spacesLeft === 0">
+                            All Out!
+                        </span>
+                        <!---------------------------->
+                        <div class="rating">
+                            <!-- RATING -->
+                            <span v-for="n in lesson.rating"> ★ </span>
+                            <span v-for="n in 5 - lesson.rating">
+                                ✰
+                            </span>
+
+                        </div>
+                    </div>
+
+                    </br>
+                </div>
+                </br>
+                </br>
+            </div>
+            <!------------------------------    Checkout Page  ------------------->
+            <div class="row1 product" v-else>
+
+                <div class="col-md-6">
+                    <strong>Full Name </strong>
+                    <input id="fullName" v-model.trim="order.fullName" class="form-control">
+                </div>
+
+                <div class="col-md-6  ">
+                    <strong>Phone Number </strong>
+                    <input id="phoneNumber" v-model.number="order.phoneNumber" class="form-control">
+                </div>
+
+                <div class="col-md-12">
+                    <strong>Address</strong>
+                    <input v-model.trim="order.address" class=" form-control">
+                </div>
+                <div class="col-md-3">
+                    <strong>City:</strong>
+                    <select v-model="order.city" class="form-control">
+                        <option disabled value="">City</option>
+                        <option v-for="(city,key) in cities" v-bind:value="city">
+                            {{key}}
+                        </option>
+
+                    </select>
+                </div>
+                </br>
+                <div class="col-md-6 offset-3">
+                    <strong>Postcode</strong>
+                    <input v-model.trim="order.postcode" class="form-control">
+
+                </div>
+                </br>
+                </br>
+                </br>
+                </br>
+                </br>
+
+                <div class="offset-5 ">
+                    <button id="addButton" class="btn btn-dark" @click="placeOrder">Place
+                        Order</button>
+
+
+                </div>
+
+
+                <div class="col-md-12 verify">
+
+                </div>
+                <div id="firstObject" class="row1 product center" v-for="lesson in cart">
+                    <div>
+                        <img v-bind:src="lesson.image">
+                    </div>
+                    <div>
+                        <h2 v-text="lesson.subject"></h2>
+                        <p v-text="lesson.location"></p>
+                        <p>Price: £{{lesson.price}} </p>
+                        <button class="btn btn-dark" v-on:click="removeFromCheckout(lesson)"
+                            data-name="lesson.id">Remove from cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-------------------------- VueJS Code  -------------------->
+
+</body>
+
+<script src="CourseWork1.js"></script>
+
+
+
+
+</html>

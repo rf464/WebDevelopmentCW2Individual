@@ -1,0 +1,31 @@
+img {
+    width: 150px;
+}
+.col1 {
+    padding-left: 1px;
+}
+
+.padding-bottom{
+    padding-bottom: 30px;
+}
+.container1{
+    width: inherit;
+    margin-top: 0px;
+}
+.row1{
+    display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;margin-left: 15px
+}
+
+.formCol{
+    position: relative;width:100%;padding-right:15px;padding-left:15px
+}
+
+.center{
+    
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+    
+}
+
