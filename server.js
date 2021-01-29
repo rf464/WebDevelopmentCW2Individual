@@ -39,7 +39,7 @@ app.get('/collection/:collectionName', (req, res, next) => {
     req.collection.find({}).toArray((e, results) => {
         if (e) return next(e)
         res.send(results)
-        console.log("Collection Page")
+        res.send.console.log("Collection Page")
     })
 })
 
@@ -71,7 +71,7 @@ app.put('/collection/:collectionName/:id', (req, res, next) => {
     (e, result) =>{
         if (e) return next(e)
         res.send((result.result.n === 1) ? {msg: 'success'} : {msg: 'error'})
-        console.log("Object " + ObjectID + "has been updated")
+        res.send.console.log("Object " + ObjectID + "has been updated")
     })
 })
 
