@@ -1,6 +1,6 @@
 
 
-new Vue({
+let store = new Vue({
 
     el: '#app',
 
@@ -24,7 +24,7 @@ new Vue({
             Liverpool: "Liverpool"
         },
 
-        lessons: lessons,
+        lessons: {},
         // lesson: {
 
         //     id: 1001,
@@ -40,6 +40,19 @@ new Vue({
         cart: []
 
 
+    },
+    created: function(){
+        fetch('https://webbasedserver.herokuapp.com/collection/Products').then(
+            function (response) {
+                response.json().then(
+                    function (json) {
+                        
+                        store.lessons =  json;
+                        
+                        
+                    });
+            })
+        
     },
 
     

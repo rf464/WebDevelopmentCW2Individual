@@ -15,14 +15,28 @@ app.param('collectionName', (req, res, next, collectionName) => {
     return next()
 })
 
+app.use( function (request, response, next) {
+    response.setHeader('Access-Control-Allow-Origin', '*');
+    response.setHeader('Access-Control-Allow-Headers', '*');
+    return next(e);
+});
+
 //this will tell the user to specify the right collection if they have done that yet
 app.get('/', (req, res, next) => {
     res.send('select a collection with /collection/collectionName');
 })
 
+//this gets a limit of objects from the database and comes back as a response 
+// app.get('/collection/:collectionName', (req, res, next) => {
+//     req.collection.find({}, {limit: 5, sort: [['price', -1]]}).toArray((e, results) => {
+//         if (e) return next(e)
+//         res.send(results)
+//     })
+// })
+
 //this gets the collection from the database and comes back as a response 
 app.get('/collection/:collectionName', (req, res, next) => {
-    req.collection.find({}, {limit: 5, sort: [['price', -1]]}).toArray((e, results) => {
+    req.collection.find({}).toArray((e, results) => {
         if (e) return next(e)
         res.send(results)
     })
@@ -66,6 +80,8 @@ app.delete('/collection/:collectionName/:id', (req, res, next) => {
             res.send((result.result.n === 1) ? {msg: 'success'} : {msg: 'error'})
         })
     })
+    
+
     
     
     //this tells the server to listen on port 3000
