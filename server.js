@@ -39,6 +39,7 @@ app.get('/collection/:collectionName', (req, res, next) => {
     req.collection.find({}).toArray((e, results) => {
         if (e) return next(e)
         res.send(results)
+        console.log("Collection Page")
     })
 })
 
@@ -47,6 +48,7 @@ app.post('/collection/:collectionName', (req, res, next) => {
     req.collection.insert(req.body, (e, results) =>{
         if (e) return next (e)
         res.send(results.ops)
+        console.long("object added to the database")
     })
 })
 
@@ -56,6 +58,7 @@ app.get('/collection/:collectionName/:id', (req, res, next) => {
     req.collection.findOne({_id: new ObjectID(req.params.id) }, (e, result) =>{
         if (e) return next(e)
         res.send(result)
+        console.log("Object " + ObjectID + " extracted from databse")
     })
 })
 
@@ -68,6 +71,7 @@ app.put('/collection/:collectionName/:id', (req, res, next) => {
     (e, result) =>{
         if (e) return next(e)
         res.send((result.result.n === 1) ? {msg: 'success'} : {msg: 'error'})
+        console.log("Object " + ObjectID + "has been updated")
     })
 })
 
@@ -77,7 +81,7 @@ app.delete('/collection/:collectionName/:id', (req, res, next) => {
         {_id: new ObjectID(req.params.id) }, 
         (e, result) =>{
             if (e) return next(e)
-            res.send((result.result.n === 1) ? {msg: 'success'} : {msg: 'error'})
+            res.send((result.result.n === 1) ? {msg: 'success object deleted'} : {msg: 'error'})
         })
     })
     
@@ -86,4 +90,6 @@ app.delete('/collection/:collectionName/:id', (req, res, next) => {
     
     //this tells the server to listen on port 3000
     const port = process.env.PORT || 3000
-    app.listen(port);
+    app.listen(port, ()=> {
+        console.log('localhost 3000 running');
+    });
