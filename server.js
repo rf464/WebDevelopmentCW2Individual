@@ -15,11 +15,11 @@ app.param('collectionName', (req, res, next, collectionName) => {
     return next()
 })
 
-// app.use( function (request, response, next) {
-//     response.setHeader('Access-Control-Allow-Origin', '*');
-//     response.setHeader('Access-Control-Allow-Headers', '*');
-//     return next(e);
-// });
+app.use( function (request, response, next) {
+    response.setHeader('Access-Control-Allow-Origin', '*');
+    response.setHeader('Access-Control-Allow-Headers', '*');
+    return next(e);
+});
 
 //this will tell the user to specify the right collection if they have done that yet
 app.get('/', (req, res, next) => {
