@@ -17,7 +17,7 @@ app.param('collectionName', (req, res, next, collectionName) => {
 
 app.use( function (request, response) {
     response.setHeader('Access-Control-Allow-Origin', '*');
-    response.setHeader('Access-Control-Allow-Headers', '*');
+    // response.setHeader('Access-Control-Allow-Headers', '*');
      
 });
 
