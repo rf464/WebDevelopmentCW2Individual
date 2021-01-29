@@ -15,11 +15,11 @@ app.param('collectionName', (req, res, next, collectionName) => {
     return next()
 })
 
-app.use( function (request, response, next) {
-    response.setHeader('Access-Control-Allow-Origin', '*');
-    response.setHeader('Access-Control-Allow-Headers', '*');
-    return next(e);
-});
+// app.use( function (request, response, next) {
+//     response.setHeader('Access-Control-Allow-Origin', '*');
+//     response.setHeader('Access-Control-Allow-Headers', '*');
+//     return next(e);
+// });
 
 //this will tell the user to specify the right collection if they have done that yet
 app.get('/', (req, res, next) => {
@@ -85,7 +85,7 @@ app.delete('/collection/:collectionName/:id', (req, res, next) => {
     
     
     //this tells the server to listen on port 3000
-    const port = process.env.PORT || 30000
+    const port = process.env.PORT || 3000
     app.listen(port, ()=> {
         console.log('localhost 3000 running');
     })
