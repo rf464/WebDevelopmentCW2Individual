@@ -42,7 +42,7 @@ let store = new Vue({
 
     },
     created: function(){
-        fetch('https://webbasedserver.herokuapp.com/collection/Products').then(
+        fetch('https://courserwork2.herokuapp.com/collection/Products').then(
             function (response) {
                 response.json().then(
                     function (json) {
