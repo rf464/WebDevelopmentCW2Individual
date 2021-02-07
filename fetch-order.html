@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Add a new order to the <code>order</code> collection</p>
+    <code>{ title: "new order", price: 49 }</code>
+    <p>The Response: <span id="response"></span></p>
+    <p>Error: <span id="error"></span></p>
+    <script>
+        const newOrder = { title: "new order", price: 49 };
+
+        fetch("https://https://courserwork2.herokuapp.com/collection/Order", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(newOrder),
+        })
+        .then(response => response.json())
+        .then(responseJSON => {
+            document.getElementById("response").innerText = JSON.stringify(responseJSON);
+        })
+        .catch((error) => {
+            document.getElementById("error").innerText = error;
+        });
+    </script>
+</body>
+</html>

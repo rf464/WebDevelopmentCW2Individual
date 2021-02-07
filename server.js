@@ -39,7 +39,7 @@ app.get('/collection/:collectionName', (req, res, next) => {
     req.collection.find({}).toArray((e, results) => {
         if (e) return next(e)
         res.send(results)
-        res.send.console.log("Collection Page")
+       console.log("Collection Page")
     })
 })
 
@@ -48,7 +48,7 @@ app.post('/collection/:collectionName', (req, res, next) => {
     req.collection.insert(req.body, (e, results) =>{
         if (e) return next (e)
         res.send(results.ops)
-        console.long("object added to the database")
+        console.log("object added to the database")
     })
 })
 

@@ -1,0 +1,114 @@
+{
+	"info": {
+		"_postman_id": "ee607c49-f651-4ced-9a9f-791e8f1679d2",
+		"name": "Products",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get all products",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/collection/Products",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"collection",
+						"Products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add a new product",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1010,\r\n    \"title\": \"new product\",\r\n    \"price\": 99\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/collection/Products",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"collection",
+						"Products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get object by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/collection/Products/6011a9aded2a8d4cb41404d6",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"collection",
+						"Products",
+						"6011a9aded2a8d4cb41404d6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update an object",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"price\": 10 }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/collection/Products/60130ffdd36a8a321c2bc4ea",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"collection",
+						"Products",
+						"60130ffdd36a8a321c2bc4ea"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete object",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		}
+	]
+}

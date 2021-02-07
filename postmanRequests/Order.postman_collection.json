@@ -1,0 +1,18 @@
+{
+	"info": {
+		"_postman_id": "4ed6e6be-d4b5-4547-88ff-57831b563cda",
+		"name": "Order",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "add to order",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		}
+	]
+}

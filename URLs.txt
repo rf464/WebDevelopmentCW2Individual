@@ -1,0 +1,8 @@
+Git hub URL
+https://rf464.github.io/WebDevelopmentCW2Individual/
+
+Git hub page that has my code
+https://github.com/rf464/WebDevelopmentCW2Individual/tree/master
+
+Heroku route that returns lessons information
+https://courserwork2.herokuapp.com/collection/Products
