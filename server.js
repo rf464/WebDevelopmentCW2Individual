@@ -43,7 +43,7 @@ app.get('/collection/:collectionName', (req, res, next) => {
     })
 })
 
-//add an object to the database
+//adds an object to the database
 app.post('/collection/:collectionName', (req, res, next) => {
     req.collection.insert(req.body, (e, results) =>{
         if (e) return next (e)
@@ -71,7 +71,7 @@ app.put('/collection/:collectionName/:id', (req, res, next) => {
     (e, result) =>{
         if (e) return next(e)
         res.send((result.result.n === 1) ? {msg: 'success'} : {msg: 'error'})
-        res.send.console.log("Object " + ObjectID + "has been updated")
+        
     })
 })
 
